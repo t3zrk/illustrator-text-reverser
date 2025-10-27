@@ -16,8 +16,8 @@ A simple yet powerful Adobe Illustrator script that reverses the order of paragr
 
 ## 🎬 Demo
 
-![Demo Animation](assets/demo.gif)
-
+![Demo Animation]
+<video controls src="illustrator-text-reverser.mp4" title="Title"></video>
 *Select a text frame with multiple paragraphs and watch them reverse order instantly!*
 
 ## 📋 Requirements
@@ -150,15 +150,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Adobe Illustrator Scripting Community
 - ExtendScript Documentation
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-
-- 🐛 [Open an issue](https://github.com/t3zrk/illustrator-text-reverser/issues)
-- 💬 [Start a discussion](https://github.com/t3zrk/illustrator-text-reverser/discussions)
-
----
 
 **⭐ If you find this script useful, please consider giving it a star!**
 
