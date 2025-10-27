@@ -1,0 +1,67 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Adobe Illustrator Files
+*.ai
+*.ait
+*.eps
+*.pdf
+*.svg
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Log Files
+*.log
+
+# Temporary Files
+*.tmp
+*.temp
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.sublime-project
+.sublime-workspace
+
+# Node Modules (if adding build tools later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Test Files
+test/
+tests/
+*.test.jsx
+
+# Distribution Files (if packaging)
+dist/
+build/
+*.zip
+*.tar.gz
+
+# Documentation Build Files
+docs/_build/
+site/
+
+# Cache
+.cache/
+*.cache
