@@ -1,213 +1,133 @@
-# 📥 Installation Guide
+# Installation Guide
 
-This guide provides detailed instructions for installing the Illustrator Text Reverser script on different operating systems.
+Illustrator Text Reverser is a standalone `.jsx` script. It does not require Node.js, a package manager, or an extension installer.
 
-## Table of Contents
-- [Windows Installation](#windows-installation)
-- [macOS Installation](#macos-installation)
-- [Troubleshooting](#troubleshooting)
-- [Uninstallation](#uninstallation)
+## Option 1 — Run without installing
 
----
+This is the fastest way to test the script.
 
-## Windows Installation
+1. Download or clone this repository.
+2. Open Adobe Illustrator.
+3. Open a document containing at least one text frame.
+4. Go to `File > Scripts > Other Script...`.
+5. Choose:
 
-### Step 1: Download the Script
+```text
+scripts/TextReverseButton.jsx
+```
 
-**Option A: Using Git**
+The script runs immediately.
+
+## Option 2 — Install in Illustrator's Scripts menu
+
+### 1. Download the repository
+
+Using Git:
+
 ```bash
 git clone https://github.com/t3zrk/illustrator-text-reverser.git
 cd illustrator-text-reverser
 ```
 
-**Option B: Direct Download**
-1. Go to [GitHub Repository](https://github.com/t3zrk/illustrator-text-reverser)
-2. Click the green "Code" button
-3. Select "Download ZIP"
-4. Extract the ZIP file to a location of your choice
+Or use GitHub's **Code > Download ZIP** option.
 
-### Step 2: Locate Adobe Illustrator Scripts Folder
+### 2. Locate Illustrator's Scripts directory
 
-The default location depends on your Illustrator version:
+The exact path varies by Illustrator version, installation location, and language.
 
-**Illustrator CC 2025:**
-```
-C:\Program Files\Adobe\Adobe Illustrator 2025\Presets\en_US\Scripts\
+Typical Windows path:
+
+```text
+C:\Program Files\Adobe\Adobe Illustrator [Version]\Presets\[Language]\Scripts\
 ```
 
-**Illustrator CC 2024:**
-```
-C:\Program Files\Adobe\Adobe Illustrator 2024\Presets\en_US\Scripts\
-```
+Typical macOS path:
 
-**Illustrator CC 2023:**
-```
-C:\Program Files\Adobe\Adobe Illustrator 2023\Presets\en_US\Scripts\
+```text
+/Applications/Adobe Illustrator [Version]/Presets/[Language]/Scripts/
 ```
 
-**For other languages**, replace `en_US` with your language code (e.g., `fr_FR`, `de_DE`, `ja_JP`).
+Examples of language folders include `en_US`, `en_GB`, `de_DE`, and `ja_JP`.
 
-### Step 3: Copy the Script
+### 3. Copy the script
 
-1. Navigate to the downloaded repository folder
-2. Go to the `scripts` folder
-3. Copy `TextReverseButton.jsx`
-4. Paste it into your Illustrator Scripts folder (see Step 2)
+Copy:
 
-### Step 4: Restart Illustrator
-
-Close and reopen Adobe Illustrator to load the new script.
-
-### Step 5: Access the Script
-
-1. Open any document in Illustrator
-2. Go to **File > Scripts**
-3. You should see **TextReverseButton** in the menu
-4. Click it to run the script
-
----
-
-## macOS Installation
-
-### Step 1: Download the Script
-
-**Option A: Using Terminal (Git)**
-```bash
-cd ~/Downloads
-git clone https://github.com/t3zrk/illustrator-text-reverser.git
-cd illustrator-text-reverser
+```text
+scripts/TextReverseButton.jsx
 ```
 
-**Option B: Direct Download**
-1. Visit [GitHub Repository](https://github.com/t3zrk/illustrator-text-reverser)
-2. Click "Code" > "Download ZIP"
-3. Extract the ZIP file
+into Illustrator's `Scripts` directory.
 
-### Step 2: Locate Adobe Illustrator Scripts Folder
+Administrator permission may be required if Illustrator is installed inside a protected system directory.
 
-**Illustrator CC 2025:**
-```
-/Applications/Adobe Illustrator 2025/Presets/en_US/Scripts/
-```
+### 4. Restart Illustrator
 
-**Illustrator CC 2024:**
-```
-/Applications/Adobe Illustrator 2024/Presets/en_US/Scripts/
-```
+Illustrator loads installed scripts when the application starts, so fully quit and reopen it after copying the file.
 
-**Illustrator CC 2023:**
-```
-/Applications/Adobe Illustrator 2023/Presets/en_US/Scripts/
+### 5. Run the script
+
+Open a document, select one or more text frames, then choose:
+
+```text
+File > Scripts > TextReverseButton
 ```
 
-### Step 3: Copy the Script
+You can also select a group containing text frames; v2 will recursively find editable text frames inside the selected group.
 
-**Using Finder:**
-1. Open Finder
-2. Press `Cmd + Shift + G` to open "Go to Folder"
-3. Paste the path from Step 2
-4. Drag and drop `TextReverseButton.jsx` from the repository into this folder
+## Updating the script
 
-**Using Terminal:**
-```bash
-cp scripts/TextReverseButton.jsx "/Applications/Adobe Illustrator 2025/Presets/en_US/Scripts/"
-```
-*(Adjust the path for your Illustrator version)*
+When a newer version is available:
 
-### Step 4: Restart Illustrator
+1. Download the latest `scripts/TextReverseButton.jsx`.
+2. Replace the installed copy in Illustrator's Scripts directory.
+3. Restart Illustrator.
 
-Quit and relaunch Adobe Illustrator.
-
-### Step 5: Access the Script
-
-1. Open any document
-2. Navigate to **File > Scripts**
-3. Select **TextReverseButton**
-
----
-
-## Alternative: Run Without Installing
-
-If you don't want to install the script permanently:
-
-1. Download `TextReverseButton.jsx`
-2. In Illustrator, go to **File > Scripts > Other Script...**
-3. Browse to and select `TextReverseButton.jsx`
-4. The script will run immediately
-
-**Note:** You'll need to repeat this process each time you want to use the script.
-
----
+The current script version is shown in the source header and runtime messages.
 
 ## Troubleshooting
 
-### Script Doesn't Appear in Menu
+### The script does not appear under File > Scripts
 
-**Problem:** The script doesn't show up under File > Scripts
+Check the following:
 
-**Solutions:**
-1. Verify the file is named exactly `TextReverseButton.jsx`
-2. Ensure the file extension is `.jsx` (not `.jsx.txt`)
-3. Check that the file is in the correct Scripts folder
-4. Restart Illustrator completely
-5. Try moving the script to the user scripts folder:
-   - **Windows:** `C:\Users\[YourUsername]\AppData\Roaming\Adobe\Adobe Illustrator [Version]\en_US\Scripts\`
-   - **macOS:** `~/Library/Application Support/Adobe/Adobe Illustrator [Version]/en_US/Scripts/`
+- The filename is exactly `TextReverseButton.jsx`.
+- The file was copied into the correct Illustrator version's `Scripts` directory.
+- The file did not become `TextReverseButton.jsx.txt`.
+- Illustrator was fully restarted after installation.
+- You are checking the `File > Scripts` menu, not an extension/panel menu.
 
-### Permission Denied Error (macOS)
+If the menu still does not update, use `File > Scripts > Other Script...` to confirm the JSX file itself can run.
 
-**Problem:** Can't copy files to the Scripts folder
+### The script says no text frame is selected
 
-**Solution:**
-```bash
-sudo cp scripts/TextReverseButton.jsx "/Applications/Adobe Illustrator 2025/Presets/en_US/Scripts/"
-```
-Enter your password when prompted.
+Use Illustrator's **Selection Tool (V)** and select the text frame object itself, or select a group that contains text frames.
 
-### "Please select a text frame" Alert
+Selecting characters with the **Type Tool (T)** is not the intended workflow for this version.
 
-**Problem:** Script shows an error even though text is selected
+### Some selected text frames are skipped
 
-**Solutions:**
-1. Make sure you're selecting the text frame itself, not the text inside
-2. Use the Selection Tool (V), not the Type Tool (T)
-3. Ensure the selected object is actually a text frame
+v2 intentionally skips text frames that are locked or hidden.
 
-### Script Runs But Nothing Happens
+Unlock/unhide those objects and run the script again if they should be processed.
 
-**Problem:** No error messages, but text doesn't reverse
+### Nothing changes
 
-**Solutions:**
-1. Check that your text has multiple paragraphs (separated by line breaks)
-2. Try pressing Enter/Return between lines to create paragraph breaks
-3. Verify the text frame contains more than one paragraph
+A frame with only one paragraph has nothing to reverse and is counted as unchanged.
 
----
+Make sure the text contains at least two paragraphs/lines separated by a line break.
 
-## Uninstallation
+### Complex styling changes unexpectedly
 
-To remove the script:
+The script rewrites the frame's textual contents through Illustrator's scripting API. For heavily formatted text with mixed character-level styling, test the operation on a duplicate or copy of the artwork before using it in production.
 
-**Windows:**
-1. Navigate to the Scripts folder
-2. Delete `TextReverseButton.jsx`
-3. Restart Illustrator
+## Uninstall
 
-**macOS:**
-```bash
-rm "/Applications/Adobe Illustrator 2025/Presets/en_US/Scripts/TextReverseButton.jsx"
-```
+Delete `TextReverseButton.jsx` from Illustrator's Scripts directory and restart Illustrator.
 
-Or use Finder to delete the file manually.
+## Support
 
----
-
-## Need More Help?
-
-- 📖 Check the [README](README.md) for usage instructions
-- 🐛 [Report an issue](https://github.com/t3zrk/illustrator-text-reverser/issues) on GitHub
-- 💬 [Ask a question](https://github.com/t3zrk/illustrator-text-reverser/discussions) in Discussions
-
----
-
-**Happy scripting! 🎨**
+- Usage and architecture: [README.md](README.md)
+- Version history: [CHANGELOG.md](CHANGELOG.md)
+- Project case study: [docs/PROJECT-CASE-STUDY.md](docs/PROJECT-CASE-STUDY.md)
+- Issues: https://github.com/t3zrk/illustrator-text-reverser/issues

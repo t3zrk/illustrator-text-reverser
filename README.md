@@ -1,152 +1,177 @@
-# 🔄 Illustrator Text Reverser
+# Illustrator Text Reverser
 
-[![License: MIT]](https://opensource.org/licenses/MIT)
-[![Adobe Illustrator]](https://www.adobe.com/products/illustrator.html)
-[![ExtendScript]](https://extendscript.docsforadobe.dev/)
+![Adobe Illustrator](https://img.shields.io/badge/Adobe%20Illustrator-ExtendScript-FF9A00?logo=adobeillustrator&logoColor=white)
+![Version](https://img.shields.io/badge/version-2.0.0-111111)
+![License](https://img.shields.io/badge/license-MIT-2ea44f)
 
-A simple yet powerful Adobe Illustrator script that reverses the order of paragraphs in selected text frames. Perfect for RTL (Right-to-Left) language work, creative text manipulation, or quick text reordering tasks.
+A lightweight Adobe Illustrator workflow utility that reverses the **order of paragraphs inside selected text frames** in one command.
 
-## ✨ Features
+Built for repetitive production-design tasks where manually cutting, moving, and reordering copy is slow, error-prone, or impractical across multiple text objects.
 
-- 🎯 **One-Click Reversal** - Select text and run the script
-- 📝 **Paragraph-Based** - Reverses entire paragraphs, not individual characters
-- ⚡ **Fast & Lightweight** - No dependencies, pure ExtendScript
-- 🛡️ **Error Handling** - Clear alerts for invalid selections
-- 🔧 **Non-Destructive** - Works directly on selected text frames
+> **Current release: v2.0.0** — adds multi-frame processing, grouped-text support, safer validation, and cleaner failure handling.
 
+## Demo
 
-## 📋 Requirements
+[▶ Watch the Illustrator Text Reverser demo](./illustrator-text-reverser.mp4)
 
-- Adobe Illustrator CC 2015 or later
-- Any operating system (Windows, macOS)
+## The problem
 
-## 🚀 Installation
+Illustrator is excellent for visual layout, but small text-production tasks can become repetitive very quickly. Reversing a multi-line list or paragraph sequence normally means manually moving each block of copy.
 
-### Method 1: Quick Install (Recommended)
+This script turns that repeated operation into a single Illustrator command.
 
-1. **Download the script**
-```bash
-   git clone https://github.com/t3zrk/illustrator-text-reverser.git
-```
-   Or download the ZIP file and extract it.
+### Before
 
-2. **Locate your Illustrator Scripts folder**
-   - **Windows**: `C:\Program Files\Adobe\Adobe Illustrator [Version]\Presets\en_US\Scripts\`
-   - **macOS**: `/Applications/Adobe Illustrator [Version]/Presets/en_US/Scripts/`
-
-3. **Copy the script**
-   - Copy `scripts/TextReverseButton.jsx` to the Scripts folder
-
-4. **Restart Adobe Illustrator**
-
-5. **Access the script**
-   - Go to `File > Scripts > TextReverseButton`
-
-### Method 2: Run Without Installing
-
-1. Download `TextReverseButton.jsx`
-2. In Illustrator, go to `File > Scripts > Other Script...`
-3. Navigate to and select `TextReverseButton.jsx`
-
-For detailed installation instructions, see [INSTALLATION.md](INSTALLATION.md)
-
-## 📖 Usage
-
-### Basic Usage
-
-1. **Open a document** in Adobe Illustrator
-2. **Create or select a text frame** with multiple paragraphs (separated by line breaks)
-3. **Select the text frame** with the Selection Tool (V)
-4. **Run the script**: `File > Scripts > TextReverseButton`
-5. **Result**: Paragraphs will be reversed in order
-
-### Example
-
-**Before:**
-```
+```text
 First paragraph
 Second paragraph
 Third paragraph
 ```
 
-**After running the script:**
-```
+### After
+
+```text
 Third paragraph
 Second paragraph
 First paragraph
 ```
 
-## 🎯 Use Cases
+## What v2 does
 
-- **RTL Language Support** - Reverse text order for Hebrew, Arabic, or other RTL languages
-- **Creative Typography** - Experimental text layouts and designs
-- **List Reversal** - Quickly reverse ordered lists or sequences
-- **Text Manipulation** - Fast paragraph reordering without manual cut/paste
+- **Reverses paragraph order** without reversing individual characters.
+- **Processes multiple selected text frames** in a single run.
+- **Finds text frames inside selected groups** recursively.
+- **Skips locked or hidden text frames** instead of interrupting the whole operation.
+- **Preserves trailing paragraph breaks** so terminal spacing does not jump to the start of the copy.
+- **Handles CR, LF, and CRLF line endings** instead of assuming one separator format.
+- **Reports batch results** when multiple objects are processed or some objects are skipped.
+- Uses **ExtendScript-compatible JavaScript** with no external dependencies.
 
-## ⚙️ How It Works
+## Usage
 
-The script operates in four simple steps:
+1. Open an Adobe Illustrator document.
+2. Select one or more text frames with the **Selection Tool**.
+3. You can also select a group that contains text frames.
+4. Run:
 
-1. **Selection Check** - Verifies a text frame is selected
-2. **Text Extraction** - Retrieves the text content
-3. **Paragraph Reversal** - Splits text by line breaks (`\r`) and reverses the array
-4. **Content Update** - Replaces the original text with reversed paragraphs
+   `File > Scripts > TextReverseButton`
 
-## 🛠️ Tech Stack
+5. The paragraph order inside each editable selected text frame is reversed.
 
-- **Language**: ExtendScript (JSX)
-- **Platform**: Adobe Illustrator Scripting API
-- **Version Control**: Git
+## Installation
 
-## 🤝 Contributing
+### Quick install
 
-Contributions are welcome! Here's how you can help:
+Clone the repository:
 
-1. **Fork the repository**
-2. **Create a feature branch**
 ```bash
-   git checkout -b feature/amazing-feature
+git clone https://github.com/t3zrk/illustrator-text-reverser.git
 ```
-3. **Commit your changes**
-```bash
-   git commit -m "Add amazing feature"
+
+Copy:
+
+```text
+scripts/TextReverseButton.jsx
 ```
-4. **Push to the branch**
-```bash
-   git push origin feature/amazing-feature
+
+into Illustrator's Scripts folder, restart Illustrator, then run it from `File > Scripts`.
+
+For Windows/macOS paths and alternate installation methods, see [INSTALLATION.md](INSTALLATION.md).
+
+### Run without installing
+
+In Illustrator:
+
+`File > Scripts > Other Script...`
+
+Then choose `scripts/TextReverseButton.jsx`.
+
+## How it works
+
+The script follows a deliberately small pipeline:
+
+```text
+Illustrator selection
+        ↓
+Collect selected text frames
+        ↓
+Traverse selected groups
+        ↓
+Validate editable frames
+        ↓
+Split content into paragraphs
+        ↓
+Reverse paragraph array
+        ↓
+Write result back to each frame
+        ↓
+Report skipped / failed batch items
 ```
-5. **Open a Pull Request**
 
-### Ideas for Contributions
+The implementation is kept intentionally dependency-free so the `.jsx` file can be dropped directly into Illustrator without a build step or plugin installer.
 
-- Add character-level reversal option
-- Support for multiple text frame selection
-- Undo/Redo functionality
-- Preserve text formatting and styles
-- GUI panel integration
+## Project structure
 
-## 🐛 Known Issues
+```text
+illustrator-text-reverser/
+├── scripts/
+│   └── TextReverseButton.jsx   # Illustrator ExtendScript
+├── docs/
+│   └── PROJECT-CASE-STUDY.md   # Portfolio-ready project breakdown
+├── illustrator-text-reverser.mp4
+├── INSTALLATION.md
+├── CHANGELOG.md
+├── LICENSE.txt
+└── README.md
+```
 
-- Only works with single text frame selections
-- Does not preserve text styling after reversal
-- Paragraph breaks must be carriage returns (`\r`)
+## Technical decisions
 
-## 📝 License
+### Why paragraph reversal instead of character reversal?
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+The goal is layout reordering, not mirrored or backwards text. Each paragraph remains readable; only its position in the sequence changes.
 
-## 👤 Author
+### Why keep it as ExtendScript?
 
-**t3zrk**
+For a focused Illustrator automation utility, a standalone JSX script has useful advantages:
 
-- GitHub: [@t3zrk](https://github.com/t3zrk)
+- no package manager
+- no runtime dependencies
+- no extension installation flow
+- simple source code
+- easy portability between workstations
 
-## 🙏 Acknowledgments
+### Why support groups?
 
-- Adobe Illustrator Scripting Community
-- ExtendScript Documentation
+Production Illustrator files frequently contain text nested inside grouped layout elements. Recursively collecting text frames makes the utility useful without forcing the designer to ungroup artwork first.
 
-**⭐ If you find this script useful, please consider giving it a star!**
+## Compatibility notes
 
-Made with ❤️ for the Adobe Illustrator community
+This project targets Adobe Illustrator's ExtendScript/JSX scripting environment.
 
+Because Illustrator rewrites text-frame contents through its scripting API, **heavily mixed character-level styling should be tested on a copy of the artwork before production use**. The script is designed primarily for paragraph-order automation rather than rich-text transformation.
+
+Locked and hidden text frames are intentionally skipped.
+
+## Version history
+
+See [CHANGELOG.md](CHANGELOG.md).
+
+## Portfolio / case study
+
+A concise project breakdown covering the problem, design rationale, technical approach, and skills demonstrated is available in [docs/PROJECT-CASE-STUDY.md](docs/PROJECT-CASE-STUDY.md).
+
+## Tech stack
+
+- Adobe Illustrator
+- ExtendScript / JSX
+- Illustrator Scripting API
+- Git / GitHub
+
+## Author
+
+Created and maintained by [@t3zrk](https://github.com/t3zrk).
+
+## License
+
+MIT License. See [LICENSE.txt](LICENSE.txt).
