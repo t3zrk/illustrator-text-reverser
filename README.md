@@ -1,5 +1,9 @@
 # Illustrator Text Reverser
 
+<p align="center">
+  <img src="assets/hero.png" alt="Illustrator Text Reverser — reverse paragraph order in Illustrator text frames" width="100%">
+</p>
+
 ![Adobe Illustrator](https://img.shields.io/badge/Adobe%20Illustrator-ExtendScript-FF9A00?logo=adobeillustrator&logoColor=white)
 ![Version](https://img.shields.io/badge/version-2.0.0-111111)
 ![License](https://img.shields.io/badge/license-MIT-2ea44f)
@@ -114,6 +118,9 @@ The implementation is kept intentionally dependency-free so the `.jsx` file can 
 
 ```text
 illustrator-text-reverser/
+├── assets/
+│   ├── hero.svg                # Editable hero artwork
+│   └── hero.png                # Rendered repository hero
 ├── scripts/
 │   └── TextReverseButton.jsx   # Illustrator ExtendScript
 ├── docs/
